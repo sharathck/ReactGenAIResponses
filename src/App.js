@@ -6,7 +6,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  const rowCount = data.length;
 
   useEffect(() => {
     console.log(searchQuery);
@@ -45,6 +45,7 @@ const App = () => {
       {isLoading && <p> Loading Data...</p>}
       {/* Rest of your component */}
       </div>
+      <h5 style={{ color: "green" }}> Total Rows: {rowCount}</h5>
       {data.map((item) => (
         <div key={item.createdDateTime}>
           <h3 style={{ color: "brown" }}> model: <span style={{ color: "blue", fontSize: "24px" }}>{item.model}</span></h3>
