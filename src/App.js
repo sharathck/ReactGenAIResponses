@@ -10,6 +10,10 @@ const App = () => {
   useEffect(() => {
     console.log(searchQuery);
     const q = searchQuery.replace(/ /g, '-');
+    if (q === '') {
+      setSearchQuery('showrecent');
+      return;
+    }
     setIsLoading(true);
     // set queryParameter string to &q=${q} if q is not empty
     console.log('limit ' + limit); 
