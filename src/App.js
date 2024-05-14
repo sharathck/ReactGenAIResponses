@@ -16,10 +16,10 @@ const App = () => {
     }
     setIsLoading(true);
     // set queryParameter string to &q=${q} if q is not empty
-    console.log('limit ' + limit); 
+    console.log('limit ' + limit);
     const queryParameter = q ? `&q=${q}` : '';
     console.log('queryParametr ' + queryParameter);
-    console.log(`https://us-central1-reviewtext-ad5c6.cloudfunctions.net/function-11?limit=${limit}${queryParameter}`); 
+    console.log(`https://us-central1-reviewtext-ad5c6.cloudfunctions.net/function-11?limit=${limit}${queryParameter}`);
     fetch(`https://us-central1-reviewtext-ad5c6.cloudfunctions.net/function-11?limit=${limit}${queryParameter}`)
       .then((res) => {
         return res.json();
@@ -51,20 +51,25 @@ const App = () => {
     <div>
       <input id="searchInput" style={{ fontSizex: "24px", height: "10%", width: "60%", boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)" }} type="text" onKeyDown={(event) => event.key === "Enter" && handleSearchChange(event)} placeholder="Search..." />
       <label htmlFor="limitInput">    Rows Limit:</label>
-      <input id="limitInput" style={{width: "10%", boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)" }} type="text" onKeyDown={(event) => event.key === "Enter" && handleLimitChange(event)} placeholder="6"/>
+      <input id="limitInput" style={{ width: "10%", boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)" }} type="text" onKeyDown={(event) => event.key === "Enter" && handleLimitChange(event)} placeholder="6" />
       <div>
-      {isLoading && <p> Loading Data...</p>}
-      {/* Rest of your component */}
+        {isLoading && <p> Loading Data...</p>}
+        {/* Rest of your component */}
       </div>
-      <h5 style={{ width: "30%",color: "green" }}> Fetched Rows: {rowCount}</h5>
+      <h5 style={{ width: "30%", color: "green" }}> Fetched Rows: {rowCount}</h5>
 
       {data.map((item) => (
         <div key={item.createdDateTime}>
           <h3 style={{ color: "brown" }}> model: <span style={{ color: "blue", fontSize: "24px" }}>{item.model}</span></h3>
           <div style={{ border: "1px dotted black", padding: "2px" }}>
-            <p style={{ color: "grey" }}>{item.question}</p>
+            <div style={{ textAlign: "center", color: "orange", fontWeight: "bold" }}>---Question--</div>
+            <ReactMarkdown>{item.question}</ReactMarkdown>
           </div>
-          <ReactMarkdown>{item.answer}</ReactMarkdown>
+          <br />
+          <div style={{ border: "1px solid black", padding: "4px" }}>
+            <div style={{ textAlign: "center", color: "green", fontWeight: "bold" }}>---Answer--</div>
+            <ReactMarkdown>{item.answer}</ReactMarkdown>
+          </div>
         </div>
       ))}
     </div>
