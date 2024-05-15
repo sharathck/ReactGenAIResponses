@@ -60,17 +60,20 @@ const App = () => {
 
       {data.map((item) => (
         <div key={item.createdDateTime}>
-          <h3 style={{ color: "brown" }}> model: <span style={{ color: "blue", fontSize: "24px" }}>{item.model}</span></h3>
-          <div style={{ border: "1px dotted black", padding: "2px" }}>
-            <div style={{ textAlign: "center", color: "orange", fontWeight: "bold" }}>---Question--</div>
-            <ReactMarkdown>{item.question}</ReactMarkdown>
-          </div>
-          <br />
-          <div style={{ border: "1px solid black", padding: "4px" }}>
-            <div style={{ textAlign: "center", color: "green", fontWeight: "bold" }}>---Answer--</div>
-            <ReactMarkdown>{item.answer}</ReactMarkdown>
-          </div>
+        <h4 style={{ color: "brown" }}>
+          Model: <span style={{ color: "blue", fontSize: "22px" }}>{item.model}   </span>
+          Date Time: <span style={{ color: "grey", fontSize: "16px" }}>{item.createdDateTime.toString()}</span>
+        </h4>
+        <div style={{ border: "1px dotted black", padding: "2px" }}>
+          <div style={{ textAlign: "center", color: "orange", fontWeight: "bold" }}>---Question--</div>
+          <ReactMarkdown>{item.question}</ReactMarkdown>
         </div>
+        <br />
+        <div style={{ border: "1px solid black", padding: "4px" }}>
+          <div style={{ textAlign: "center", color: "green", fontWeight: "bold" }}>---Answer--</div>
+          <ReactMarkdown>{item.answer}</ReactMarkdown>
+        </div>
+      </div>
       ))}
     </div>
   );
