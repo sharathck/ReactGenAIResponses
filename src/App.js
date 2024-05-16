@@ -54,27 +54,31 @@ const App = () => {
       <input id="limitInput" style={{ width: "10%", boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)" }} type="text" onKeyDown={(event) => event.key === "Enter" && handleLimitChange(event)} placeholder="6" />
       <div>
         {isLoading && <p> Loading Data...</p>}
-        {/* Rest of your component */}
-      </div>
-      <h5 style={{ width: "30%", color: "green" }}> Fetched Rows: {rowCount}</h5>
+        {!isLoading && (
+          <>
+            {/* Rest of your component */}
+            <h5 style={{ width: "30%", color: "green" }}> Fetched Rows: {rowCount}</h5>
 
-      {data.map((item) => (
-        <div key={item.createdDateTime}>
-        <h4 style={{ color: "brown" }}>
-          Model: <span style={{ color: "blue", fontSize: "22px" }}>{item.model}   </span>
-          Date Time: <span style={{ color: "grey", fontSize: "16px" }}>{item.createdDateTime.toString()}</span>
-        </h4>
-        <div style={{ border: "1px dotted black", padding: "2px" }}>
-          <div style={{ textAlign: "center", color: "orange", fontWeight: "bold" }}>---Question--</div>
-          <ReactMarkdown>{item.question}</ReactMarkdown>
-        </div>
-        <br />
-        <div style={{ border: "1px solid black", padding: "4px" }}>
-          <div style={{ textAlign: "center", color: "green", fontWeight: "bold" }}>---Answer--</div>
-          <ReactMarkdown>{item.answer}</ReactMarkdown>
-        </div>
+            {data.map((item) => (
+              <div key={item.createdDateTime}>
+                <h4 style={{ color: "brown" }}>
+                  Model: <span style={{ color: "blue", fontSize: "22px" }}>{item.model}   </span>
+                  Date Time: <span style={{ color: "grey", fontSize: "16px" }}>{item.createdDateTime.toString()}</span>
+                </h4>
+                <div style={{ border: "1px dotted black", padding: "2px" }}>
+                  <div style={{ textAlign: "center", color: "orange", fontWeight: "bold" }}>---Question--</div>
+                  <ReactMarkdown>{item.question}</ReactMarkdown>
+                </div>
+                <br />
+                <div style={{ border: "1px solid black", padding: "4px" }}>
+                  <div style={{ textAlign: "center", color: "green", fontWeight: "bold" }}>---Answer--</div>
+                  <ReactMarkdown>{item.answer}</ReactMarkdown>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
-      ))}
     </div>
   );
 };
